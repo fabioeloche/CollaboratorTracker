@@ -19,4 +19,9 @@ creds = Credentials.from_service_account_info(CREDS_INFO, scopes=SCOPES)
 client = gspread.authorize(creds)
 sheet = client.open_by_key(SPREADSHEET_ID).worksheet(SHEET_NAME)
 
+# Function to get the current date and time
+def get_current_datetime():
+    return datetime.now().strftime("%d-%m-%Y %H:%M:%S")  # Format: DD-MM-YYYY HH:MM:SS
+
+
 
