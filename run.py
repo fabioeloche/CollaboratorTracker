@@ -87,4 +87,23 @@ def log_task():
     except Exception as e:
         print(f"Error logging task: {e}")
 
+# Function to display all logged tasks
+def view_logs():
+    try:
+        print("\nView Logs in Terminal:")
+
+        records = sheet.get_all_records()
+        if not records:
+            print("No logs available to view.")
+            return
+
+        table = PrettyTable()
+        table.field_names = records[0].keys()
+        for record in records:
+            table.add_row(record.values())
+        print(table)
+
+    except Exception as e:
+        print(f"Error viewing logs: {e}")
+
 
