@@ -35,5 +35,7 @@ def ensure_headers():
     elif list(existing_data[0].keys()) != headers:  # If headers don't match
         print("Warning: The headers in the sheet don't match expected format.")
 
+# Call ensure_headers to make sure headers are in place
+ensure_headers()
 
 
