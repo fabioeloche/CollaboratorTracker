@@ -107,3 +107,41 @@ def view_logs():
         print(f"Error viewing logs: {e}")
 
 
+# Helper function to filter tasks by the selected month
+def filter_tasks_by_month(records):
+    from datetime import datetime
+    import calendar
+
+    today = datetime.now()
+
+    months = []
+    for i in range(12):
+        month = (today.month - i - 1) % 12 + 1  # Handle month rollover
+        year = today.year if today.month - i > 0 else today.year - 1
+        months.append((calendar.month_name[month], month, year))
+
+    months = months[::-1]
+
+    print("\nFilter by Month:")
+    for idx, (month_name, _, _) in enumerate(months, start=1):
+        print(f"{idx}. {month_name}")
+
+    try:
+        choice = int(input("Enter the number corresponding to your choice: ")) - 1
+        if choice < 0 or choice >= len(months):
+            print("Invalid choice.")
+            return [], None
+    except ValueError:
+        print("Invalid input. Please enter a number.")
+        return [], None
+
+    selected_month_name, selected_month, selected_year = months[choice]
+    filtered_records = [
+        record for record in records
+        if datetime.strptime(record['Date'], "%d-%m-%Y").month == selected_month and
+           datetime.strptime(record['Date'], "%d-%m-%Y").year == selected_year
+    ]
+
+    return filtered_records, selected_month_name
+
+
