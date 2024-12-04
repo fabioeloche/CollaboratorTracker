@@ -71,3 +71,20 @@ def select_task_type():
             print("Invalid choice. Please enter 1, 2, or 3.")
 
 
+# Function to log a new task entry
+def log_task():
+    name = input("Enter your name: ")
+    task = input("Enter the task: ")
+    date = get_date()  # Function to get date (custom or current)
+    hours = float(input("Enter hours worked: "))
+    task_type = select_task_type()  # Function to select the task type
+    recorded_at = get_current_datetime()  # Get the current date and time
+
+    # Append data to the Google Sheet
+    try:
+        sheet.append_row([name, task, date, hours, task_type, recorded_at])
+        print("Task logged successfully.")
+    except Exception as e:
+        print(f"Error logging task: {e}")
+
+
