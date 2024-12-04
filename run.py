@@ -53,4 +53,21 @@ def get_date():
         except ValueError:
             print("Invalid date format. Please use DD-MM-YYYY.")
 
+def select_task_type():
+    while True:
+        print("\nSelect Task Type:")
+        print("1. Administrative")
+        print("2. Marketing")
+        print("3. Product")
+        type_choice = input("Enter the number corresponding to the task type: ")
+
+        if type_choice == '1':
+            return "Administrative"
+        elif type_choice == '2':
+            return "Marketing"
+        elif type_choice == '3':
+            return "Product"
+        else:
+            print("Invalid choice. Please enter 1, 2, or 3.")
+
 
