@@ -38,4 +38,19 @@ def ensure_headers():
 # Call ensure_headers to make sure headers are in place
 ensure_headers()
 
+# Helper functions
+def get_date():
+    while True:
+        date_input = input("Enter the date (DD-MM-YYYY) or press Enter to use today's date: ")
+
+        if not date_input.strip():  # User pressed Enter
+            return datetime.now().strftime("%d-%m-%Y")
+
+        try:
+            # Validate and format the custom date
+            custom_date = datetime.strptime(date_input, "%d-%m-%Y")
+            return custom_date.strftime("%d-%m-%Y")
+        except ValueError:
+            print("Invalid date format. Please use DD-MM-YYYY.")
+
 
