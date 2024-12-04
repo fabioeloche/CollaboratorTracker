@@ -192,3 +192,26 @@ def display_statistics_table():
     except Exception as e:
         print(f"Error displaying statistics: {e}")
 
+
+# Main function to display the menu and execute chosen options
+def main():
+    while True:
+        print("\nOptions:")
+        print("1. Log Task")
+        print("2. View Logs")
+        print("3. View Statistics")
+        print("4. Exit")
+
+        choice = input("Choose an option: ")
+        if choice == '1':
+            log_task()
+        elif choice == '2':
+            view_logs()
+        elif choice == '3':
+            display_statistics_table()
+        elif choice == '4':
+            print("Exiting program.")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
