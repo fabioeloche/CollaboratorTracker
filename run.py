@@ -23,5 +23,17 @@ sheet = client.open_by_key(SPREADSHEET_ID).worksheet(SHEET_NAME)
 def get_current_datetime():
     return datetime.now().strftime("%d-%m-%Y %H:%M:%S")  # Format: DD-MM-YYYY HH:MM:SS
 
+# Function to ensure headers in the Google Sheet
+def ensure_headers():
+    headers = ["Name", "Task", "Date", "Hours", "Type", "Recorded At"]
+    existing_data = sheet.get_all_records()
+
+    # Check if headers are missing or don't match
+    if not existing_data:  # If the sheet is empty
+        sheet.append_row(headers)
+        print("Headers added to Google Sheets.")
+    elif list(existing_data[0].keys()) != headers:  # If headers don't match
+        print("Warning: The headers in the sheet don't match expected format.")
+
 
 
