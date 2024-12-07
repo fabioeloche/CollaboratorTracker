@@ -74,21 +74,17 @@ Modify the script with your Google Sheets details:
 ## Usage
 
 1. Clone the repository:
-   bash
+   ```bash
    git clone https://github.com/fabioeloche/CollaboratorTracker.git
-   
 2. Navigate to the project directory:
-   bash
+   ```bash
    cd CollaboratorTracker
-   
 3. Install the required Python dependencies:
-   bash
+   ```bash
    pip install -r requirements.txt
-   
 4. Run the program:
-   bash
+   ```bash
    python run.py
-   
 5. Follow the interactive menu to log tasks, view logs, or analyze data.
 
 ---
