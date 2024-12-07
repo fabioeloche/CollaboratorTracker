@@ -20,7 +20,7 @@ Collaborator Tracker is a Python program designed to help users efficiently log,
    - [Configurations](#configurations)
 5. [Cloning the Repository](#cloning-the-repository)
 6. [Testing](#testing)
-   - [Summary of Tests](#summary-of-tests)
+   - [Functionality test results](#Functionality-test-results)
    - [Unit Testing](#unit-testing)
    - [Integration Testing](#integration-testing)
    - [Error Handling](#error-handling)
@@ -96,38 +96,25 @@ To clone the repository to your local machine:
 
 The project includes extensive testing to ensure reliability and performance. Below is an outline of the tests performed, their objectives, and outcomes.
 
-### Summary of Tests
 
-| Feature                 | Expected Outcome                                         | Testing Performed                           | Result                            | Pass/Fail |
-|-------------------------|---------------------------------------------------------|--------------------------------------------|-----------------------------------|-----------|
-| `get_current_datetime()`| Returns correctly formatted date and time               | Checked against different system times      | Correctly formatted date/time     | Pass      |
-| `log_task()`            | Logs task details accurately in Google Sheets           | Logged various tasks with different details| Task logged successfully          | Pass      |
-| `view_logs()`           | Displays all tasks in tabular format                    | Viewed logs after multiple task entries     | Logs displayed as expected        | Pass      |
-| `filter_tasks_by_month()`| Filters tasks correctly by the selected month          | Filtered tasks for multiple months          | Tasks filtered accurately         | Pass      |
-| `display_statistics_table()` | Aggregates and displays task statistics            | Viewed statistics after task entries        | Accurate statistics displayed     | Pass      |
-| Error Handling          | Manages invalid inputs and API failures gracefully      | Entered invalid data, simulated API errors | Errors handled with messages      | Pass      |
-| Performance             | Handles large datasets efficiently                      | Tested with 1000+ task entries              | System remains responsive         | Pass      |
-| Browser Compatibility   | Works across major browsers (Chrome, Firefox, Edge, Safari) | Tested the app in various browsers        | Full functionality across all     | Pass      |
+### Functionality test results
+
+| **Feature**                   | **Expected Outcome**                                             | **Testing Performed**                                | **Result**                                      | **Pass/Fail** |
+|--------------------------------|------------------------------------------------------------------|-----------------------------------------------------|------------------------------------------------|---------------|
+| **Log Task**                   | Logs a task entry with all required fields                       | Entered task details and verified in the sheet      | Task details were appended correctly           | Pass          |
+| **View Logs**                  | Displays all tasks in a formatted table                         | Called function to fetch and display tasks          | Tasks displayed in `PrettyTable` format        | Pass          |
+| **Filter Tasks by Month**      | Filters tasks based on the user-selected month                  | Selected a specific month and reviewed filtered tasks | Filtered tasks displayed accurately            | Pass          |
+| **Display Statistics Table**   | Displays task statistics by type, collaborator, and total hours | Generated summary tables for a specific month       | Statistics displayed accurately                | Pass          |
+| **Date Validation**            | Validates and formats user-entered date                        | Entered valid/invalid dates in different formats     | Accepted valid dates, rejected invalid dates   | Pass          |
+| **Task Type Selection**        | Allows user to select a task type from a menu                   | Selected options (1, 2, 3) and verified type returned | Correct task type returned for each choice     | Pass          |
+| **Statistics Calculation**     | Summarizes total hours by task type and collaborator            | Entered test data and reviewed generated statistics | Accurate summary calculations                  | Pass          |
+| **User Menu Navigation**       | Displays the menu and executes chosen options                   | Selected all menu options (1-4)                     | All options performed expected actions         | Pass          |
+| **Exit Program**               | Terminates the script when the user selects "Exit"              | Selected "Exit" from the menu                       | Program terminated without errors              | Pass          |
+| **Error Handling**             | Displays meaningful error messages for unexpected issues        | Simulated errors (e.g., connection issues, input errors) | Errors were caught and displayed appropriately | Pass          |
+| **Responsiveness**             | Adapts to various user inputs and handles invalid data gracefully | Entered invalid inputs for different features       | Script handled invalid inputs without crashing | Pass          |
+
 
 ### Types of Tests
-
-#### Unit Testing
-- **Objective:** To validate individual functions independently.
-- Examples:
-  - `get_current_datetime()`: Validates date and time formatting.
-  - `log_task()`: Ensures task data is logged accurately.
-
-#### Integration Testing
-- **Objective:** To validate the interaction between multiple features.
-- Examples:
-  - Ensured logging tasks, viewing logs, and displaying statistics work cohesively.
-  - Validated Google Sheets integration for seamless data handling.
-
-#### Error Handling
-- **Objective:** To handle unexpected or invalid inputs and external errors gracefully.
-- Examples:
-  - Tested invalid dates or missing data fields.
-  - Simulated Google Sheets API failures to check fallback mechanisms.
 
 #### Performance Testing
 - **Objective:** To ensure the application remains performant under heavy use.
