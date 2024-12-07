@@ -3,9 +3,7 @@
 Collaborator Tracker is a Python program designed to help users efficiently log, view, and analyze tasks using a Google Sheets backend. The program integrates task management and data visualization features, offering a simple yet effective solution for individuals and teams.
 
 
-
 ![Collaborator Tracker](./assets/images/mockup.png)
-
 
 ---
 
@@ -13,22 +11,19 @@ Collaborator Tracker is a Python program designed to help users efficiently log,
 1. [Project Overview](#project-overview)
 2. [Live Application](#live-application)
 3. [Features](#features)
-4. [Setup](#setup)
+4. [Project Structure](#project-structure)
+5. [Setup](#setup)
    - [Dependencies](#dependencies)
    - [Google Sheets API Setup](#google-sheets-api-setup)
    - [Environment Variables](#environment-variables)
    - [Configurations](#configurations)
-5. [Cloning the Repository](#cloning-the-repository)
 6. [Testing](#testing)
    - [Functionality test results](#Functionality-test-results)
-   - [Unit Testing](#unit-testing)
-   - [Integration Testing](#integration-testing)
-   - [Error Handling](#error-handling)
    - [Performance Testing](#performance-testing)
    - [Browser Compatibility Testing](#browser-compatibility-testing)
-7. [Project Structure](#project-structure)
-8. [Deployment on Heroku](#Deployment-on-Heroku)
-8. [Contributors](#contributors)
+7. [Deployment on Heroku](#Deployment-on-Heroku)
+8. [Cloning the Repository](#cloning-the-repository)
+9. [Contributors](#contributors)
 
 ## Project Overview
 
@@ -51,6 +46,24 @@ Access the live application here: [Collaborator Tracker](https://fabioapptest-71
 - *Filtering by Month:* Filter tasks by specific months for focused reviews.
 - *Statistical Analysis:* View detailed statistics, including total hours spent per task type and collaborator.
 - *Google Sheets Integration:* Interact with Google Sheets for seamless data handling.
+
+---
+## Project Structure
+
+### Key Files
+- *run.py*: Main program script.
+- *requirements.txt*: Lists Python dependencies.
+- *Google Sheets Credentials*: JSON file for API authentication.
+
+### Screenshots
+- *Main menu screen*:  
+  ![Main Menu](./assets/images/main.jpeg)
+- *Task Logging Screen*:  
+  ![Task Logging](./assets/images/img1.jpeg)
+- *View Logs Screen*:  
+  ![View Logs](./assets/images/img2.jpeg)
+- *Statistics Screen*:  
+  ![Statistics](./assets/images/img3.jpeg)
 
 ---
 
@@ -77,19 +90,6 @@ Modify the script with your Google Sheets details:
 - SPREADSHEET_ID: The ID of your spreadsheet.
 - SHEET_NAME: The name of the worksheet to use.
 
----
-
-## Cloning the Repository
-
-To clone the repository to your local machine:
-
-1. Log in (or sign up) to GitHub.
-2. Go to the repository: fabioeloche/CollaboratorTracker
-3. Click on the Code button, select the cloning method (HTTPS, SSH, or GitHub CLI), and copy the link provided.
-4. Open your terminal and navigate to the directory where you want to clone the repository.
-5. Type the following command into the terminal:
-    ```bash
-    git clone <https://github.com/fabioeloche/CollaboratorTracker>
 ---
 
 ## Testing
@@ -133,23 +133,6 @@ The project includes extensive testing to ensure reliability and performance. Be
 
 ---
 
-## Project Structure
-
-### Key Files
-- *run.py*: Main program script.
-- *requirements.txt*: Lists Python dependencies.
-- *Google Sheets Credentials*: JSON file for API authentication.
-
-### Screenshots
-- *Task Logging Screen*:  
-  ![Task Logging](./assets/images/img1.jpeg)
-- *View Logs Screen*:  
-  ![View Logs](./assets/images/img2.jpeg)
-- *Statistics Screen*:  
-  ![Statistics](./assets/images/img3.jpeg)
-
----
-
 ## Deployment on Heroku
 
 1. **Add Buildpacks:**
@@ -173,6 +156,21 @@ The project includes extensive testing to ensure reliability and performance. Be
    - Click **Deploy Branch** to build and deploy the app.
 
 ---
+
+
+## Cloning the Repository
+
+To clone the repository to your local machine:
+
+1. Log in (or sign up) to GitHub.
+2. Go to the repository: fabioeloche/CollaboratorTracker
+3. Click on the Code button, select the cloning method (HTTPS, SSH, or GitHub CLI), and copy the link provided.
+4. Open your terminal and navigate to the directory where you want to clone the repository.
+5. Type the following command into the terminal:
+    ```bash
+    git clone <https://github.com/fabioeloche/CollaboratorTracker>
+---
+
 
 ## Contributors
 
