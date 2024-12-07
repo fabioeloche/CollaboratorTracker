@@ -146,3 +146,22 @@ The project includes extensive testing to ensure reliability and performance. Be
   - **Safari**
 - Results:
   - The app is fully functional and responsive across all tested browsers.
+
+---
+
+## Project Structure
+
+### Key Files
+- *task_logger.py*: Main program script.
+- *requirements.txt*: Lists Python dependencies.
+- *Google Sheets Credentials*: JSON file for API authentication.
+
+### Screenshots
+- *Task Logging Screen*:  
+  ![Task Logging](./assets/images/img1)
+- *View Logs Screen*:  
+  ![View Logs](./assets/images/img2)
+- *Statistics Screen*:  
+  ![Statistics](./assets/images/img3)
+
+---
