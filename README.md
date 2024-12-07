@@ -2,7 +2,10 @@
 
 Collaborator Tracker is a Python program designed to help users efficiently log, view, and analyze tasks using a Google Sheets backend. The program integrates task management and data visualization features, offering a simple yet effective solution for individuals and teams.
 
-![Collaborator Tracker](./assets/images/main.png)
+
+
+![Collaborator Tracker](./assets/images/main.jpeg)
+
 
 ---
 
@@ -157,11 +160,11 @@ The project includes extensive testing to ensure reliability and performance. Be
 
 ### Screenshots
 - *Task Logging Screen*:  
-  ![Task Logging](./assets/images/img1)
+  ![Task Logging](./assets/images/img1.jpeg)
 - *View Logs Screen*:  
-  ![View Logs](./assets/images/img2)
+  ![View Logs](./assets/images/)
 - *Statistics Screen*:  
-  ![Statistics](./assets/images/img3)
+  ![Statistics](./assets/images/)
 
 ---
 
