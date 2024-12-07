@@ -187,3 +187,11 @@ The project includes extensive testing to ensure reliability and performance. Be
 4. **Select and Deploy Branch:**
    - Choose the branch you want to deploy (e.g., `main`).
    - Click **Deploy Branch** to build and deploy the app.
+
+---
+
+## Contributors
+
+- [Fabio Loche](https://github.com/fabioeloche) - Project Author
+
+---
