@@ -11,8 +11,10 @@ Collaborator Tracker is a Python program designed to help users efficiently log,
 1. [Project Overview](#project-overview)
 2. [Live Application](#live-application)
 3. [Features](#features)
+4. [Program Flow](#Program-flow)
 4. [Project Structure](#project-structure)
 5. [Setup](#setup)
+   - [Setup instructions](#Setup-instructions)
    - [Dependencies](#dependencies)
    - [Google Sheets API Setup](#google-sheets-api-setup)
    - [Environment Variables](#environment-variables)
@@ -48,6 +50,17 @@ Access the live application here: [Collaborator Tracker](https://fabioapptest-71
 - *Google Sheets Integration:* Interact with Google Sheets for seamless data handling.
 
 ---
+
+## Program Flow
+
+1. The user is welcomed with the **Main Menu Screen**.
+2. They can choose to:
+   - Log a new task.
+   - View all logged tasks.
+   - Display statistics for specific months.
+   - Exit the program.
+3. Tasks are saved to a Google Sheet, and data is retrieved for viewing logs and statistics.
+
 ## Project Structure
 
 ### Key Files
@@ -55,19 +68,32 @@ Access the live application here: [Collaborator Tracker](https://fabioapptest-71
 - *requirements.txt*: Lists Python dependencies.
 - *Google Sheets Credentials*: JSON file for API authentication.
 
-### Screenshots
-- *Main menu screen*:  
-  ![Main Menu](./assets/images/main.jpeg)
-- *Task Logging Screen*:  
-  ![Task Logging](./assets/images/img1.jpeg)
-- *View Logs Screen*:  
-  ![View Logs](./assets/images/img2.jpeg)
-- *Statistics Screen*:  
-  ![Statistics](./assets/images/img3.jpeg)
+### Screens
 
----
+1. **Main Menu Screen**: The central hub where users can select options to log tasks, view logs, or display statistics.  
+
+   ![Main Menu Screen](./assets/images/main.jpeg)
+
+2. **Task Logging Screen**: Interface for entering task details, including name, task description, date, hours, and type.  
+
+   ![Task Logging Screen](./assets/images/img1.jpeg)
+
+3. **View Logs Screen**: Displays all logged tasks in a table format for review.  
+
+   ![View Logs Screen](./assets/images/img2.jpeg)
+
+4. **Statistics Screen**: Summarizes logged tasks by hours, task type, and collaborator, filtered by month.  
+
+   ![Statistics Screen](./assets/images/img3.jpeg)
 
 ## Setup
+
+### Setup Instructions
+
+1. Create a Google Cloud project and enable the Google Sheets API.
+2. Download the service account JSON key file and set it as the `creds` environment variable.
+3. Update the `SPREADSHEET_ID` and `SHEET_NAME` variables in the script.
+4. Run the program using Python.
 
 ### Dependencies
 - *Python*
@@ -156,7 +182,6 @@ The project includes extensive testing to ensure reliability and performance. Be
    - Click **Deploy Branch** to build and deploy the app.
 
 ---
-
 
 ## Cloning the Repository
 
