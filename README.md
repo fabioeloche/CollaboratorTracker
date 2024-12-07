@@ -165,3 +165,25 @@ The project includes extensive testing to ensure reliability and performance. Be
   ![Statistics](./assets/images/img3)
 
 ---
+
+## Deployment on Heroku
+
+1. **Add Buildpacks:**
+   - Go to the **Settings** tab of your Heroku app.
+   - In the **Buildpacks** section, add:
+     - `heroku/python`
+     - `heroku/nodejs`
+   - Ensure `heroku/python` is listed first.
+
+2. **Set Environment Variables:**
+   - In the **Config Vars** section under the **Settings** tab, add the following:
+     - **`CREDS`**: Paste your Google Sheets API JSON credentials.
+     - **`PORT`**: Set the value to `8000`.
+
+3. **Connect to GitHub:**
+   - Go to the **Deploy** tab in your Heroku app.
+   - Under **Deployment Method**, select **GitHub** and link your repository.
+
+4. **Select and Deploy Branch:**
+   - Choose the branch you want to deploy (e.g., `main`).
+   - Click **Deploy Branch** to build and deploy the app.
