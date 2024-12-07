@@ -36,6 +36,8 @@ Collaborator Tracker aims to simplify task tracking and management by providing:
 - Google Sheets integration for real-time data storage and retrieval.
 - Data filtering and statistical analysis for better task insights.
 
+---
+
 ## Live Application
 
 Access the live application here: [Collaborator Tracker](https://fabioapptest-71025b7099dc.herokuapp.com/)
