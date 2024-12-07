@@ -88,9 +88,8 @@ To clone the repository to your local machine:
 3. Click on the Code button, select the cloning method (HTTPS, SSH, or GitHub CLI), and copy the link provided.
 4. Open your terminal and navigate to the directory where you want to clone the repository.
 5. Type the following command into the terminal:
-```bash
-git clone <https://github.com/fabioeloche/CollaboratorTracker>
-
+    ```bash
+    git clone <https://github.com/fabioeloche/CollaboratorTracker>
 ---
 
 ## Testing
