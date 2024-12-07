@@ -59,3 +59,14 @@ Access the live application here: [Collaborator Tracker](https://fabioapptest-71
 1. Enable the *Google Sheets API* in the Google Cloud Console.
 2. Create a service account and download the credentials as a JSON file.
 3. Save the credentials in a secure location and ensure the path is accessible by your program.
+
+### Environment Variables
+Set up the following environment variable:
+- CREDS: Path to your Google Sheets API JSON credentials.
+
+### Configurations
+Modify the script with your Google Sheets details:
+- SPREADSHEET_ID: The ID of your spreadsheet.
+- SHEET_NAME: The name of the worksheet to use.
+
+---
