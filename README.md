@@ -18,7 +18,7 @@ Collaborator Tracker is a Python program designed to help users efficiently log,
    - [Google Sheets API Setup](#google-sheets-api-setup)
    - [Environment Variables](#environment-variables)
    - [Configurations](#configurations)
-5. [Usage](#usage)
+5. [Cloning the Repository](#cloning-the-repository)
 6. [Testing](#testing)
    - [Summary of Tests](#summary-of-tests)
    - [Unit Testing](#unit-testing)
@@ -79,21 +79,17 @@ Modify the script with your Google Sheets details:
 
 ---
 
-## Usage
+## Cloning the Repository
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/fabioeloche/CollaboratorTracker.git
-2. Navigate to the project directory:
-   ```bash
-   cd CollaboratorTracker
-3. Install the required Python dependencies:
-   ```bash
-   pip install -r requirements.txt
-4. Run the program:
-   ```bash
-   python run.py
-5. Follow the interactive menu to log tasks, view logs, or analyze data.
+To clone the repository to your local machine:
+
+1. Log in (or sign up) to GitHub.
+2. Go to the repository: fabioeloche/CollaboratorTracker
+3. Click on the Code button, select the cloning method (HTTPS, SSH, or GitHub CLI), and copy the link provided.
+4. Open your terminal and navigate to the directory where you want to clone the repository.
+5. Type the following command into the terminal:
+```bash
+git clone <https://github.com/fabioeloche/CollaboratorTracker>
 
 ---
 
