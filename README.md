@@ -35,3 +35,13 @@ Access the live application here: [Collaborator Tracker](https://fabioapptest-71
 
 
 ---
+
+## Features
+
+- *Task Logging:* Easily log task details such as type, assignee, date, and hours worked.
+- *Data Viewing:* Retrieve and display task logs in a tabular format.
+- *Filtering by Month:* Filter tasks by specific months for focused reviews.
+- *Statistical Analysis:* View detailed statistics, including total hours spent per task type and collaborator.
+- *Google Sheets Integration:* Interact with Google Sheets for seamless data handling.
+
+---
