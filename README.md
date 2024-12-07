@@ -27,6 +27,8 @@ Collaborator Tracker is a Python program designed to help users efficiently log,
 8. [Cloning the Repository](#cloning-the-repository)
 9. [Contributors](#contributors)
 
+---
+
 ## Project Overview
 
 Collaborator Tracker aims to simplify task tracking and management by providing:
@@ -61,6 +63,8 @@ Access the live application here: [Collaborator Tracker](https://fabioapptest-71
    - Exit the program.
 3. Tasks are saved to a Google Sheet, and data is retrieved for viewing logs and statistics.
 
+---
+
 ## Project Structure
 
 ### Key Files
@@ -85,6 +89,8 @@ Access the live application here: [Collaborator Tracker](https://fabioapptest-71
 4. **Statistics Screen**: Summarizes logged tasks by hours, task type, and collaborator, filtered by month.  
 
    ![Statistics Screen](./assets/images/img3.jpeg)
+
+---
 
 ## Setup
 
