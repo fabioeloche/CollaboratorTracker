@@ -45,3 +45,17 @@ Access the live application here: [Collaborator Tracker](https://fabioapptest-71
 - *Google Sheets Integration:* Interact with Google Sheets for seamless data handling.
 
 ---
+
+## Setup
+
+### Dependencies
+- *Python*
+- *Libraries:*
+  - gspread: For interacting with Google Sheets.
+  - google-auth: For authenticating with Google APIs.
+  - prettytable: For creating formatted tables.
+
+### Google Sheets API Setup
+1. Enable the *Google Sheets API* in the Google Cloud Console.
+2. Create a service account and download the credentials as a JSON file.
+3. Save the credentials in a secure location and ensure the path is accessible by your program.
