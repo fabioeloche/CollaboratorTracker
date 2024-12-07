@@ -162,9 +162,9 @@ The project includes extensive testing to ensure reliability and performance. Be
 - *Task Logging Screen*:  
   ![Task Logging](./assets/images/img1.jpeg)
 - *View Logs Screen*:  
-  ![View Logs](./assets/images/)
+  ![View Logs](./assets/images/img2.jpeg)
 - *Statistics Screen*:  
-  ![Statistics](./assets/images/)
+  ![Statistics](./assets/images/img3.jpeg)
 
 ---
 
