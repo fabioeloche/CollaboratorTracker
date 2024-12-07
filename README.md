@@ -26,7 +26,6 @@ Collaborator Tracker is a Python program designed to help users efficiently log,
 7. [Project Structure](#project-structure)
 8. [Deployment on Heroku](#Deployment-on-Heroku)
 8. [Contributors](#contributors)
-9. [License](#license)
 
 ## Project Overview
 
