@@ -1,32 +1,37 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Collaborator Tracker
 
-Welcome,
+Collaborator Tracker is a Python program designed to help users efficiently log, view, and analyze tasks using a Google Sheets backend. The program integrates task management and data visualization features, offering a simple yet effective solution for individuals and teams.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **May 14, 2024**
-
-## Reminders
-
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+![Collaborator Tracker](./assets/images/main.png)
 
 ---
 
-Happy coding!
+## Table of Contents
+1. [Project Overview](#project-overview)
+2. [Live Application](#live-application)
+3. [Features](#features)
+4. [Setup](#setup)
+   - [Dependencies](#dependencies)
+   - [Google Sheets API Setup](#google-sheets-api-setup)
+   - [Environment Variables](#environment-variables)
+   - [Configurations](#configurations)
+5. [Usage](#usage)
+6. [Testing](#testing)
+7. [Project Structure](#project-structure)
+8. [Deployment on Heroku](#Deployment-on-Heroku)
+8. [Contributors](#contributors)
+9. [License](#license)
+
+## Project Overview
+
+Collaborator Tracker aims to simplify task tracking and management by providing:
+- A command-line interface for logging tasks.
+- Google Sheets integration for real-time data storage and retrieval.
+- Data filtering and statistical analysis for better task insights.
+
+## Live Application
+
+Access the live application here: [Collaborator Tracker](https://fabioapptest-71025b7099dc.herokuapp.com/)
+
+
+---
