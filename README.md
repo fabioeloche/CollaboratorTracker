@@ -4,7 +4,7 @@ Collaborator Tracker is a Python program designed to help users efficiently log,
 
 
 
-![Collaborator Tracker](./assets/images/main.jpeg)
+![Collaborator Tracker](./assets/images/mockup.png)
 
 
 ---
@@ -149,7 +149,7 @@ The project includes extensive testing to ensure reliability and performance. Be
 ## Project Structure
 
 ### Key Files
-- *task_logger.py*: Main program script.
+- *run.py*: Main program script.
 - *requirements.txt*: Lists Python dependencies.
 - *Google Sheets Credentials*: JSON file for API authentication.
 
