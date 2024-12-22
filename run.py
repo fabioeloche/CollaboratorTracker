@@ -12,7 +12,9 @@ CREDS_INFO = json.loads(os.environ['creds'])  # Decodes the environment variable
 SPREADSHEET_ID = "1jNF9dM8jqkJBCoWkHhPYtRDOtXTDtGt6Omdq5cZpX8U"  # Update with your Google Sheets ID
 SHEET_NAME = "Foglio1"  # Name of the sheet
 
-print("Welcome to the Task Logger Program!")
+print("Welcome to the Task Logger Program!\n")
+print("This robust tool enables managers to view tasks performed by each team member, \ntrack hours spent, and access detailed monthly statistics for the entire team or individual members. \nTeam members can quickly log tasks in under 30 seconds, thanks to our efficient interface.\n These statistics provide real-time insights that help managers enhance team productivity and performance.")
+
 
 # Authorize and open the sheet
 creds = Credentials.from_service_account_info(CREDS_INFO, scopes=SCOPES)
