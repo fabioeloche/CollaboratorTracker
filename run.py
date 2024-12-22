@@ -13,7 +13,7 @@ SPREADSHEET_ID = "1jNF9dM8jqkJBCoWkHhPYtRDOtXTDtGt6Omdq5cZpX8U"  # Update with y
 SHEET_NAME = "Foglio1"  # Name of the sheet
 
 print("Welcome to the Task Logger Program!\n")
-print("This robust tool enables managers to view tasks performed by each team member, track hours spent, and access detailed monthly statistics for the entire team or individual members. Team members can quickly log tasks in under 30 seconds, thanks to our efficient interface. These statistics provide real-time insights that help managers enhance team productivity and performance.\n")
+print("This tool enables managers to view tasks performed by each team member, track hours spent, and access detailed monthly statistics for the entire team or individual members. Team members can quickly log tasks in under 30 seconds, thanks to our efficient interface. These statistics provide real-time insights that help managers enhance team productivity and performance.\n")
 print("For Team Members:\nLog a task quickly by entering details in the \"Log Task\" section—our efficient interface ensures it takes under 30 seconds.\n")
 print("For Managers:\nAccess real-time statistics in the \"View Statistics\" section to monitor team performance and individual contributions effectively.")
 
@@ -76,10 +76,34 @@ def select_task_type():
 
 # Function to log a new task entry
 def log_task():
-    name = input("Enter your name: ")
-    task = input("Enter the task: ")
+    # Validate and ensure the name input is not empty or just spaces
+    while True:
+        name = input("Enter your name: ").strip()
+        if name:
+            break
+        print("Name cannot be empty. Please enter a valid name.")
+    
+     # Validate and ensure the task input is not empty or just spaces
+    while True:
+        task = input("Enter the task: ").strip()
+        if task:
+            break
+        print("Task description cannot be empty. Please enter a valid task.")
+    
     date = get_date()  # Function to get date (custom or current)
-    hours = float(input("Enter hours worked: "))
+   
+    # Validate and ensure the hours input is a positive float
+    while True:
+        hours_input = input("Enter hours worked: ").strip()
+        try:
+            hours = float(hours_input)
+            if hours > 0:
+                break
+            else:
+                print("Hours must be greater than 0.")
+        except ValueError:
+            print("Invalid input for hours. Please enter a valid number.")
+    
     task_type = select_task_type()  # Function to select the task type
     recorded_at = get_current_datetime()  # Get the current date and time
 
