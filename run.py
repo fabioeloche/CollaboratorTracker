@@ -13,7 +13,7 @@ SPREADSHEET_ID = "1jNF9dM8jqkJBCoWkHhPYtRDOtXTDtGt6Omdq5cZpX8U"  # Update with y
 SHEET_NAME = "Foglio1"  # Name of the sheet
 
 print("Welcome to the Task Logger Program!\n")
-print("This tool enables managers to view tasks performed by each team member, track hours spent, and access detailed monthly statistics for the entire team or individual members. Team members can quickly log tasks in under 30 seconds, thanks to our efficient interface. These statistics provide real-time insights that help managers enhance team productivity and performance.\n")
+print("This tool enables managers to view tasks performed by each team member, track hours spent, and access detailed monthly statistics for the entire team or individual members.\n Team members can quickly log tasks in under 30 seconds, thanks to our efficient interface. These statistics provide real-time insights that help managers enhance team productivity and performance.\n")
 print("For Team Members:\nLog a task quickly by entering details in the \"Log Task\" section—our efficient interface ensures it takes under 30 seconds.\n")
 print("For Managers:\nAccess real-time statistics in the \"View Statistics\" section to monitor team performance and individual contributions effectively.")
 
