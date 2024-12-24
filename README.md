@@ -26,7 +26,7 @@ This tool empowers managers to observe tasks completed by each team member, moni
    - [Dependencies](#dependencies)
    - [Configurations](#configurations)
 6. [Testing](#testing)
-   - [Functionality test results](#Functionality-test-results)
+   - [Functionality Test Results](#Functionality-test-results)
    - [Browser Compatibility Testing](#browser-compatibility-testing)
 7. [Deployment on Heroku](#Deployment-on-Heroku)
 8. [Cloning the Repository](#cloning-the-repository)
