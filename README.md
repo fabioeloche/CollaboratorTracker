@@ -16,14 +16,17 @@ This tool empowers managers to observe tasks completed by each team member, moni
 4. [Program Flow](#Program-flow)
 4. [Project Structure](#project-structure)
 5. [Setup](#setup)
-   - [Setup instructions](#Setup-instructions)
+   - [Google Cloud Project Configuration](#google-cloud-project-configuration)
+     - [Create a Google Cloud Project](#create-a-google-cloud-project)
+     - [Enable Google Sheets API](#enable-google-sheets-api)
+   - [Service Account and Credentials](#service-account-and-credentials)
+     - [Create Service Account](#create-service-account)
+     - [Download JSON Key](#download-json-key)
+     - [Set Environment Variable](#set-environment-variable)
    - [Dependencies](#dependencies)
-   - [Google Sheets API Setup](#google-sheets-api-setup)
-   - [Environment Variables](#environment-variables)
    - [Configurations](#configurations)
 6. [Testing](#testing)
    - [Functionality test results](#Functionality-test-results)
-   - [Performance Testing](#performance-testing)
    - [Browser Compatibility Testing](#browser-compatibility-testing)
 7. [Deployment on Heroku](#Deployment-on-Heroku)
 8. [Cloning the Repository](#cloning-the-repository)
@@ -99,12 +102,36 @@ Access the live application here: [Collaborator Tracker](https://fabioapptest-71
 
 ## Setup
 
-### Setup Instructions
+### Google Cloud Project Configuration
 
-1. Create a Google Cloud project and enable the Google Sheets API.
-2. Download the service account JSON key file and set it as the `creds` environment variable.
-3. Update the `SPREADSHEET_ID` and `SHEET_NAME` variables in the script.
-4. Run the program using Python.
+#### Create a Google Cloud Project:
+- Navigate to the [Google Cloud Console](https://console.cloud.google.com/).
+- Click 'Create Project', enter a name for your new project, and select 'Create'.
+- Alternatively, you can select an existing project from the project list if you have one.
+
+#### Enable Google Sheets API:
+- Go to 'APIs & Services' > 'Library'.
+- Use the search bar to find the 'Google Sheets API'.
+- Click on it and then select 'Enable' to activate the API for your project.
+
+### Service Account and Credentials
+
+#### Create Service Account:
+- Within the 'APIs & Services' section, navigate to 'Credentials'.
+- Click on 'Create Credentials' and select 'Service Account'.
+- Fill in the necessary details for the service account, such as name and description, then click 'Create'.
+  
+#### Download JSON Key:
+- Once the service account is created, click on it to view details.
+- Go to the 'Keys' tab and select 'Add Key' > 'Create new key'.
+- Choose 'JSON' as the key type and click 'Create'. This will trigger the download of the JSON key file.
+
+#### Set Environment Variable:
+Ensure the security and accessibility of your service account credentials:
+- **Secure Storage**: Store the JSON key file in a secure, accessible location on your development machine. Avoid locations that are synced to cloud storage or accessible by other users.
+
+- **Environment Variable Configuration**:
+  Define the `CREDS` environment variable to reference the path of your JSON key file. 
 
 ### Dependencies
 - *Python*
@@ -112,15 +139,6 @@ Access the live application here: [Collaborator Tracker](https://fabioapptest-71
   - gspread: For interacting with Google Sheets.
   - google-auth: For authenticating with Google APIs.
   - prettytable: For creating formatted tables.
-
-### Google Sheets API Setup
-1. Enable the *Google Sheets API* in the Google Cloud Console.
-2. Create a service account and download the credentials as a JSON file.
-3. Save the credentials in a secure location and ensure the path is accessible by your program.
-
-### Environment Variables
-Set up the following environment variable:
-- CREDS: Path to your Google Sheets API JSON credentials.
 
 ### Configurations
 Modify the script with your Google Sheets details:
@@ -152,11 +170,6 @@ The project includes extensive testing to ensure reliability and performance. Be
 
 
 ### Types of Tests
-
-#### Performance Testing
-- **Objective:** To ensure the application remains performant under heavy use.
-- Example:
-  - Tested with a dataset containing over 200 task entries, ensuring consistent responsiveness.
 
 #### Browser Compatibility Testing
 - **Objective:** To verify the app functions as expected on different web browsers.
