@@ -14,12 +14,6 @@ CREDS_INFO = json.loads(os.environ['creds'])
 SPREADSHEET_ID = "1jNF9dM8jqkJBCoWkHhPYtRDOtXTDtGt6Omdq5cZpX8U"
 SHEET_NAME = "Foglio1"  # Name of the sheet
 
-print("Welcome to the Task Logger Program!\n")
-print("This tool enables managers to view tasks performed by each team member, track hours spent, and access detailed monthly statistics for the entire team or individual members.\n Team members can quickly log tasks in under 30 seconds, thanks to our efficient interface. These statistics provide real-time insights that help managers enhance team productivity and performance.\n")
-print("For Team Members:\nLog a task quickly by entering details in the \"Log Task\" section—our efficient interface ensures it takes under 30 seconds.\n")
-print("For Managers:\nAccess real-time statistics in the \"View Statistics\" section to monitor team performance and individual contributions effectively.")
-
-
 # Global variables for Google Sheets integration
 creds = None
 client = None
@@ -40,8 +34,15 @@ def init():
     client = gspread.authorize(creds)
     sheet = client.open_by_key(SPREADSHEET_ID).worksheet(SHEET_NAME)
 
-# Function to get the current date and time
-
+def welcome_message():
+    """
+    Prints the introduction and instructions for the Task Logger Program.
+    """
+    print("Welcome to the Task Logger Program!\n")
+    print("This tool enables managers to view tasks performed by each team member, track hours spent, and access detailed monthly statistics for the entire team or individual members.\n")
+    print("Team members can quickly log tasks in under 30 seconds, thanks to our efficient interface. These statistics provide real-time insights that help managers enhance team productivity and performance.\n")
+    print("For Team Members:\nLog a task quickly by entering details in the \"Log Task\" section—our efficient interface ensures it takes under 30 seconds.\n")
+    print("For Managers:\nAccess real-time statistics in the \"View Statistics\" section to monitor team performance and individual contributions effectively.")
 
 def get_current_datetime():
     """
@@ -51,10 +52,6 @@ def get_current_datetime():
         str: The current date and time as a formatted string.
     """
     return datetime.now().strftime("%d-%m-%Y %H:%M:%S")  # Format: DD-MM-YYYY HH:MM:SS
-
-
-# Function to ensure headers in the Google Sheet
-
 
 def ensure_headers():
     """
@@ -82,9 +79,6 @@ def ensure_headers():
         print("Headers added to Google Sheets.")
     elif list(existing_data[0].keys()) != headers:  # If headers don't match
         print("Warning: The headers in the sheet don't match expected format.")
-
-# Helper functions
-
 
 def get_date():
     """
@@ -137,8 +131,6 @@ def select_task_type():
         else:
             print("Invalid choice. Please enter 1, 2, or 3.")
 
-
-# Function to log a new task entry
 def log_task():
     """
     Log a new task to the Google Sheet.
@@ -164,7 +156,7 @@ def log_task():
             break
         print("Name cannot be empty. Please enter a valid name.")
     
-     # Validate and ensure the task input is not empty or just spaces
+    # Validate and ensure the task input is not empty or just spaces
     while True:
         task = input("Enter the task: ").strip()
         if task:
@@ -195,7 +187,6 @@ def log_task():
     except Exception as e:
         print(f"Error logging task: {e}")
 
-# Function to display all logged tasks
 def view_logs():
     """
     Display all logged tasks in a tabular format in the terminal.
@@ -225,8 +216,6 @@ def view_logs():
     except Exception as e:
         print(f"Error viewing logs: {e}")
 
-
-# Helper function to filter tasks by the selected month
 def filter_tasks_by_month(records):
     """
     Filter task records by the selected month.
@@ -277,8 +266,6 @@ def filter_tasks_by_month(records):
 
     return filtered_records, selected_month_name
 
-
-# Function to display statistics in table format
 def display_statistics_table():
     """
     Display task statistics for the selected month.
@@ -303,11 +290,13 @@ def display_statistics_table():
             print("No logs found. Please log a task first.")
             return
 
-        filtered_records, selected_month_name = filter_tasks_by_month(records)
+        while True:
+            filtered_records, selected_month_name = filter_tasks_by_month(records)
 
-        if not filtered_records:
-            print(f"No records found for {selected_month_name}.")
-            return
+            if filtered_records:
+                break
+            else:
+                print("Invalid choice or no records found for the selected month. Please select again.")
 
         task_type_data = defaultdict(float)
         collaborator_data = defaultdict(float)
@@ -341,8 +330,6 @@ def display_statistics_table():
     except Exception as e:
         print(f"Error displaying statistics: {e}")
 
-
-# Main function to display the menu and execute chosen options
 def main():
     """
     Main function to initialize the program and provide a menu-driven interface 
@@ -363,6 +350,9 @@ def main():
     # Initialize global variables and Google Sheets connection
     init()
     
+    # Call the function to display the introduction
+    welcome_message()
+
     # Call ensure_headers to make sure headers are in place
     ensure_headers()
 
