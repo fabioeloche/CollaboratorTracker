@@ -38,11 +38,11 @@ def welcome_message():
     """
     Prints the introduction and instructions for the Task Logger Program.
     """
-    print("Welcome to the Task Logger Program!\n")
-    print("This tool enables managers to view tasks performed by each team member, track hours spent, and access detailed monthly statistics for the entire team or individual members.\n")
-    print("Team members can quickly log tasks in under 30 seconds, thanks to our efficient interface. These statistics provide real-time insights that help managers enhance team productivity and performance.\n")
-    print("For Team Members:\nLog a task quickly by entering details in the \"Log Task\" section—our efficient interface ensures it takes under 30 seconds.\n")
-    print("For Managers:\nAccess real-time statistics in the \"View Statistics\" section to monitor team performance and individual contributions effectively.")
+    print("Welcome to the Task Logger Program!")
+    print("Managers can track team tasks, hours, and view detailed stats by member or month.")
+    print("Team members can log tasks in under 30 seconds with our easy interface.")
+    print("For Managers: Get real-time stats to monitor team performance and contributions.")
+    print("For Team Members: Quickly log tasks in the 'Log Task' section in no time!")
 
 def get_current_datetime():
     """
@@ -294,9 +294,12 @@ def display_statistics_table():
             filtered_records, selected_month_name = filter_tasks_by_month(records)
 
             if filtered_records:
+                print(f"Records found for {selected_month_name}.")
                 break
+            elif selected_month_name is None:
+                print("Invalid choice. Please select a valid month.")
             else:
-                print("Invalid choice or no records found for the selected month. Please select again.")
+                print(f"No records found for {selected_month_name}. Please select another month.")
 
         task_type_data = defaultdict(float)
         collaborator_data = defaultdict(float)
