@@ -184,8 +184,12 @@ def log_task():
     try:
         sheet.append_row([name, task, date, hours, task_type, recorded_at])
         print("Task logged successfully.")
-    except Exception as e:
-        print(f"Error logging task: {e}")
+    except gspread.exceptions.APIError as e:
+        print("Failed to log task due to an API error:", e)
+    except gspread.exceptions.SpreadsheetNotFound:
+        print("Spreadsheet not found. Please check your spreadsheet ID.")
+    except ValueError as e:
+        print("Provided data is invalid:", e)
 
 def view_logs():
     """
