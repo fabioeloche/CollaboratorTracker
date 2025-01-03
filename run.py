@@ -345,35 +345,26 @@ def display_statistics_table():
             filtered_records, selected_month_name = filter_tasks_by_month(records)
 
             if filtered_records:
-                print(f"Records found for {selected_month_name}.")
+                print(f"\nRecords found for {selected_month_name}.\n")
+                break
+            if selected_month_name is None:
+                print("Invalid choice. Please select a valid month.")
             else:
-                if selected_month_name is None:
-                    print("Invalid choice. Please select a valid month.")
-                else:
-                    print(
-                        f"No records found for {
-                            selected_month_name}. Please select another month."
-                    )
+                print(f"No records found for {selected_month_name}. "
+                    "Please select another month.")
 
+        # Initialize data containers for statistics
         task_type_data = defaultdict(float)
         collaborator_data = defaultdict(float)
-        monthly_data = defaultdict(float)
-
-        for record in records:
-            date = datetime.strptime(record["Date"], "%d-%m-%Y")
-            month_name = date.strftime("%B %Y")
-            monthly_data[month_name] += float(record["Hours"])
-
-        # Calculate task type and collaborator hours for the selected month
-        # Variable to track the total hours of the selected month
         selected_month_total_hours = 0
 
+        # Calculate statistics for the selected month
         for record in filtered_records:
             task_type_data[record["Type"]] += float(record["Hours"])
             collaborator_data[record["Name"]] += float(record["Hours"])
-            # Add hours to the total for selected month
             selected_month_total_hours += float(record["Hours"])
 
+        # Helper function to generate and display tables
         def generate_table(data, title, headers):
             table = PrettyTable()
             table.title = title
@@ -382,22 +373,18 @@ def display_statistics_table():
                 table.add_row([key, f"{value:.2f}h"])
             print(table)
 
+        # Generate and display tables
         generate_table(
             task_type_data,
-            f"Hours per Task Type for {
-                       selected_month_name}",
-            ["Task Type", "Hours"],
+            f"Hours per Task Type for {selected_month_name}",
+            ["Task Type", "Hours"]
         )
         generate_table(
             collaborator_data,
-            f"Hours by Collaborator for {
-                       selected_month_name}",
-            ["Collaborator", "Hours"],
+            f"Hours by Collaborator for {selected_month_name}",
+            ["Collaborator", "Hours"]
         )
-        print(
-            f"\nTotal Hours for {selected_month_name}: {
-              selected_month_total_hours:.2f}h"
-        )
+        print(f"\nTotal Hours for {selected_month_name}: {selected_month_total_hours:.2f}h")
 
     except (ValueError, TypeError) as e:
         print(f"Error displaying statistics: {e}")
