@@ -1,57 +1,90 @@
-import gspread
-from google.oauth2.service_account import Credentials
+"""
+run.py
+
+This script is part of the Task Logger program. It provides functionality
+for logging tasks, viewing logs, and displaying task statistics using
+Google Sheets as the backend.
+
+Features:
+- Log tasks with details such as name, task description, date, hours, and type.
+- View logged tasks in a tabular format.
+- Generate and display task statistics filtered by month.
+
+Usage:
+- Execute the script to start the interactive task logger program.
+
+Author: Fabio Loche
+"""
 from datetime import datetime
 from collections import defaultdict
 import json
 import os
+import calendar
 from prettytable import PrettyTable
+import gspread
+from google.oauth2.service_account import Credentials
 
 # Google Sheets Setup
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 # Decodes the environment variable
-CREDS_INFO = json.loads(os.environ['creds'])
+CREDS_INFO = json.loads(os.environ["CREDS"])
 # Update with your Google Sheets ID
 SPREADSHEET_ID = "1jNF9dM8jqkJBCoWkHhPYtRDOtXTDtGt6Omdq5cZpX8U"
 SHEET_NAME = "Foglio1"  # Name of the sheet
 
 # Global variables for Google Sheets integration
-creds = None
-client = None
-sheet = None
+CREDS = None
+CLIENT = None
+SHEET = None
+
 
 def init():
     """
     Initialize the Google Sheets connection and set up global variables.
-
-    This function uses service account credentials to authorize the Google Sheets client
-    and opens the specified sheet for operations.
-    
-    @return 
+    This function uses service account credentials to authorize the
+    Google Sheets client and opens the specified sheet for operations.
+    @return
         None
     """
-    global creds, client, sheet
-    creds = Credentials.from_service_account_info(CREDS_INFO, scopes=SCOPES)
-    client = gspread.authorize(creds)
-    sheet = client.open_by_key(SPREADSHEET_ID).worksheet(SHEET_NAME)
+    global CREDS, CLIENT, SHEET
+    CREDS = Credentials.from_service_account_info(CREDS_INFO, scopes=SCOPES)
+    CLIENT = gspread.authorize(CREDS)
+    SHEET = CLIENT.open_by_key(SPREADSHEET_ID).worksheet(SHEET_NAME)
+
 
 def welcome_message():
     """
     Prints the introduction and instructions for the Task Logger Program.
     """
     print("Welcome to the Task Logger Program!")
-    print("Managers can track team tasks, hours, and view detailed stats by member or month.")
-    print("Team members can log tasks in under 30 seconds with our easy interface.")
-    print("For Managers: Get real-time stats to monitor team performance and contributions.")
-    print("For Team Members: Quickly log tasks in the 'Log Task' section in no time!")
+    print(
+        "Managers can track team tasks, hours, and view detailed stats by "
+        "member or month."
+    )
+    print(
+        "Team members can log tasks in under 30 seconds with our easy "
+        "interface."
+    )
+    print(
+        "For Managers: Get real-time stats to monitor team performance "
+        "and contributions."
+    )
+    print(
+        "For Team Members: Quickly log tasks in the 'Log Task' section "
+        "in no time!"
+    )
+
 
 def get_current_datetime():
     """
-    Get the current date and time in the format DD-MM-YYYY HH:MM:SS.
-    
-    @return 
+    Get the current date and time in the format
+    DD-MM-YYYY HH:MM:SS.
+
+    @return
         str: The current date and time as a formatted string.
     """
-    return datetime.now().strftime("%d-%m-%Y %H:%M:%S")  # Format: DD-MM-YYYY HH:MM:SS
+    return datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+
 
 def ensure_headers():
     """
@@ -59,7 +92,8 @@ def ensure_headers():
 
     This function checks whether the first row of the Google Sheet contains
     the expected headers. If the sheet is empty, it adds the headers. If the
-    headers are present but do not match the expected format, it displays a warning.
+    headers are present but do not match the expected format, it displays
+    a warning.
 
     Expected headers:
         ["Name", "Task", "Date", "Hours", "Type", "Recorded At"]
@@ -67,32 +101,36 @@ def ensure_headers():
     Args:
         None
 
-    @return 
+    @return
         None
     """
     headers = ["Name", "Task", "Date", "Hours", "Type", "Recorded At"]
-    existing_data = sheet.get_all_records()
+    existing_data = SHEET.get_all_records()
 
     # Check if headers are missing or don't match
     if not existing_data:  # If the sheet is empty
-        sheet.append_row(headers)
+        SHEET.append_row(headers)
         print("Headers added to Google Sheets.")
     elif list(existing_data[0].keys()) != headers:  # If headers don't match
         print("Warning: The headers in the sheet don't match expected format.")
 
+
 def get_date():
     """
-    Prompt the user to enter a date in the format DD-MM-YYYY or use today's date by default.
+    Prompt the user to enter a date in the format DD-MM-YYYY or use today's
+    date by default.
 
-    The function validates the user input to ensure the date is in the correct format.
+    Validates user input to ensure the date is in the correct format.
     If the input is empty, the current date is returned in DD-MM-YYYY format.
-    If the input is invalid, the user is prompted again until a valid date is entered.
+    Prompts the user until a valid date is entered for invalid input.
 
-    @return 
+    @return
         str: A valid date in the format DD-MM-YYYY.
     """
     while True:
-        date_input = input("Enter the date (DD-MM-YYYY) or press Enter to use today's date: ")
+        date_input = input(
+            "Enter the date (DD-MM-YYYY) or press Enter to use today's date: "
+        )
 
         if not date_input.strip():  # User pressed Enter
             return datetime.now().strftime("%d-%m-%Y")
@@ -104,50 +142,54 @@ def get_date():
         except ValueError:
             print("Invalid date format. Please use DD-MM-YYYY.")
 
+
 def select_task_type():
     """
     Prompt the user to select a task type from a predefined list.
 
-    The function displays a menu of task types (Administrative, Marketing, Product)
-    and allows the user to choose by entering the corresponding number. If the user
-    enters an invalid choice, they are prompted again until a valid selection is made.
+    Displays a menu of task types: Administrative, Marketing, Product.
+    and allows the user to choose by entering the corresponding number.
+    If the user enters an invalid choice, they are prompted again until
+    a valid selection is made.
 
-    @return 
-        str: The selected task type as a string ("Administrative", "Marketing", or "Product").
+    @return
+        str: The selected task type as a string ("Administrative",
+        "Marketing", or "Product").
     """
     while True:
         print("\nSelect Task Type:")
         print("1. Administrative")
         print("2. Marketing")
         print("3. Product")
-        type_choice = input("Enter the number corresponding to the task type: ")
+        type_choice = input(
+            "Enter the number corresponding to the task type: ")
 
-        if type_choice == '1':
+        if type_choice == "1":
             return "Administrative"
-        elif type_choice == '2':
+        if type_choice == "2":
             return "Marketing"
-        elif type_choice == '3':
+        if type_choice == "3":
             return "Product"
-        else:
-            print("Invalid choice. Please enter 1, 2, or 3.")
+
+        print("Invalid choice. Please enter 1, 2, or 3.")
+
 
 def log_task():
     """
     Log a new task to the Google Sheet.
 
-    This function prompts the user to provide details for logging a task, including:
+    Prompts the user to provide task details, including:
         - Name: The name of the person logging the task.
         - Task: A description of the task performed.
-        - Date: The date the task was performed (either custom or today's date).
+        - Date: The task date (custom or today's).
         - Hours: The number of hours spent on the task.
-        - Task Type: The category of the task (Administrative, Marketing, or Product).
+        - Task Type: Administrative, Marketing, or Product.
         - Recorded At: The current date and time of the task entry.
 
-    The function validates all user inputs to ensure they are complete and valid before
-    appending the data to the Google Sheet. If there is an error during the logging process,
-    an error message is displayed.
+    Validates user inputs before appending to Google Sheets. Displays an
+    error message if logging fails.
 
-    @return 
+    @return
         None
     """
     while True:
@@ -155,16 +197,16 @@ def log_task():
         if name:
             break
         print("Name cannot be empty. Please enter a valid name.")
-    
+
     # Validate and ensure the task input is not empty or just spaces
     while True:
         task = input("Enter the task: ").strip()
         if task:
             break
         print("Task description cannot be empty. Please enter a valid task.")
-    
+
     date = get_date()  # Function to get date (custom or current)
-   
+
     # Validate and ensure the hours input is a positive float
     while True:
         hours_input = input("Enter hours worked: ").strip()
@@ -172,17 +214,16 @@ def log_task():
             hours = float(hours_input)
             if hours > 0:
                 break
-            else:
-                print("Hours must be greater than 0.")
+            print("Hours must be greater than 0.")
         except ValueError:
             print("Invalid input for hours. Please enter a valid number.")
-    
+
     task_type = select_task_type()  # Function to select the task type
     recorded_at = get_current_datetime()  # Get the current date and time
 
     # Append data to the Google Sheet
     try:
-        sheet.append_row([name, task, date, hours, task_type, recorded_at])
+        SHEET.append_row([name, task, date, hours, task_type, recorded_at])
         print("Task logged successfully.")
     except gspread.exceptions.APIError as e:
         print("Failed to log task due to an API error:", e)
@@ -191,22 +232,23 @@ def log_task():
     except ValueError as e:
         print("Provided data is invalid:", e)
 
+
 def view_logs():
     """
     Display all logged tasks in a tabular format in the terminal.
 
     This function retrieves all records from the Google Sheet and displays them
     in a neatly formatted table using the PrettyTable library. If there are no
-    logs available, it informs the user. In case of any errors during the process,
-    an error message is displayed.
+    logs available, it informs the user. In case of any errors during the
+    process, an error message is displayed.
 
-    @return 
+    @return
         None
     """
     try:
         print("\nView Logs in Terminal:")
 
-        records = sheet.get_all_records()
+        records = SHEET.get_all_records()
         if not records:
             print("No logs available to view.")
             return
@@ -217,27 +259,30 @@ def view_logs():
             table.add_row(record.values())
         print(table)
 
-    except Exception as e:
-        print(f"Error viewing logs: {e}")
+    except gspread.exceptions.APIError as e:
+        print(f"Error viewing logs due to API error: {e}")
+    except gspread.exceptions.SpreadsheetNotFound:
+        print("Spreadsheet not found. Please check your spreadsheet ID.")
+    except ValueError as e:
+        print(f"Invalid data: {e}")
+
 
 def filter_tasks_by_month(records):
     """
     Filter task records by the selected month.
 
-    This function provides the user with a list of the last 12 months to choose from.
-    It filters the task records based on the selected month and year.
+    This function provides the user with a list of the last 12 months to choose
+    from. It filters the task records based on the selected month and year.
 
     Args:
-        records (list of dict): A list of task records retrieved from the Google Sheet.
+        records: A list of task records retrieved from the Google Sheet.
 
-    @return 
+    @return
         tuple: A tuple containing:
-            - filtered_records (list): A list of task records matching the selected month.
-            - selected_month_name (str): The name of the selected month, or None if no valid choice is made.
+            - filtered_records (list): Task records for the selected month.
+            - selected_month_name (str): The name of the selected month,
+            or None if no valid choice is made.
     """
-    from datetime import datetime
-    import calendar
-
     today = datetime.now()
 
     months = []
@@ -263,12 +308,14 @@ def filter_tasks_by_month(records):
 
     selected_month_name, selected_month, selected_year = months[choice]
     filtered_records = [
-        record for record in records
-        if datetime.strptime(record['Date'], "%d-%m-%Y").month == selected_month and
-           datetime.strptime(record['Date'], "%d-%m-%Y").year == selected_year
+        record
+        for record in records
+        if datetime.strptime(record['Date'], "%d-%m-%Y").month == selected_month
+        and datetime.strptime(record['Date'], "%d-%m-%Y").year == selected_year
     ]
 
     return filtered_records, selected_month_name
+
 
 def display_statistics_table():
     """
@@ -280,15 +327,15 @@ def display_statistics_table():
         - Hours worked by each collaborator.
         - Total hours logged for the selected month.
 
-    The statistics are displayed in a tabular format using the PrettyTable library.
-    If no logs are found or no records match the selected month, appropriate messages
-    are displayed.
+    The statistics are displayed in a tabular format using the
+    PrettyTable library. If no logs are found or no records match
+    the selected month, appropriate messages are displayed.
 
-    @return 
+    @return
         None
     """
     try:
-        records = sheet.get_all_records()
+        records = SHEET.get_all_records()
 
         if not records:
             print("No logs found. Please log a task first.")
@@ -299,11 +346,14 @@ def display_statistics_table():
 
             if filtered_records:
                 print(f"Records found for {selected_month_name}.")
-                break
-            elif selected_month_name is None:
-                print("Invalid choice. Please select a valid month.")
             else:
-                print(f"No records found for {selected_month_name}. Please select another month.")
+                if selected_month_name is None:
+                    print("Invalid choice. Please select a valid month.")
+                else:
+                    print(
+                        f"No records found for {
+                            selected_month_name}. Please select another month."
+                    )
 
         task_type_data = defaultdict(float)
         collaborator_data = defaultdict(float)
@@ -315,12 +365,14 @@ def display_statistics_table():
             monthly_data[month_name] += float(record["Hours"])
 
         # Calculate task type and collaborator hours for the selected month
-        selected_month_total_hours = 0  # Variable to track the total hours of the selected month
+        # Variable to track the total hours of the selected month
+        selected_month_total_hours = 0
 
         for record in filtered_records:
-            task_type_data[record['Type']] += float(record['Hours'])
-            collaborator_data[record['Name']] += float(record['Hours'])
-            selected_month_total_hours += float(record["Hours"])  # Add hours to the total for selected month
+            task_type_data[record["Type"]] += float(record["Hours"])
+            collaborator_data[record["Name"]] += float(record["Hours"])
+            # Add hours to the total for selected month
+            selected_month_total_hours += float(record["Hours"])
 
         def generate_table(data, title, headers):
             table = PrettyTable()
@@ -330,16 +382,30 @@ def display_statistics_table():
                 table.add_row([key, f"{value:.2f}h"])
             print(table)
 
-        generate_table(task_type_data, f"Hours per Task Type for {selected_month_name}", ["Task Type", "Hours"])
-        generate_table(collaborator_data, f"Hours by Collaborator for {selected_month_name}", ["Collaborator", "Hours"])
-        print(f"\nTotal Hours for {selected_month_name}: {selected_month_total_hours:.2f}h")
+        generate_table(
+            task_type_data,
+            f"Hours per Task Type for {
+                       selected_month_name}",
+            ["Task Type", "Hours"],
+        )
+        generate_table(
+            collaborator_data,
+            f"Hours by Collaborator for {
+                       selected_month_name}",
+            ["Collaborator", "Hours"],
+        )
+        print(
+            f"\nTotal Hours for {selected_month_name}: {
+              selected_month_total_hours:.2f}h"
+        )
 
-    except Exception as e:
+    except (ValueError, TypeError) as e:
         print(f"Error displaying statistics: {e}")
+
 
 def main():
     """
-    Main function to initialize the program and provide a menu-driven interface 
+    Main function to initialize the program and provide a menu-driven interface
     for the Task Logger program.
 
     The function offers the following options:
@@ -348,15 +414,15 @@ def main():
         3. View Statistics: Displays task statistics for a selected month.
         4. Exit: Exits the program.
 
-    The program initializes the Google Sheets connection and continues to display 
-    the menu until the user chooses to exit.
+    The program initializes the Google Sheets connection and continues to
+    display the menu until the user chooses to exit.
 
-    @return 
+    @return
         None
     """
     # Initialize global variables and Google Sheets connection
     init()
-    
+
     # Call the function to display the introduction
     welcome_message()
 
@@ -383,6 +449,6 @@ def main():
         else:
             print("Invalid choice. Please try again.")
 
+
 if __name__ == "__main__":
     main()
-
