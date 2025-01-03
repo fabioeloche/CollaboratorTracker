@@ -27,7 +27,7 @@ from google.oauth2.service_account import Credentials
 # Google Sheets Setup
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 # Decodes the environment variable
-CREDS_INFO = json.loads(os.environ["CREDS"])
+CREDS_INFO = json.loads(os.environ["creds"])
 # Update with your Google Sheets ID
 SPREADSHEET_ID = "1jNF9dM8jqkJBCoWkHhPYtRDOtXTDtGt6Omdq5cZpX8U"
 SHEET_NAME = "Foglio1"  # Name of the sheet
